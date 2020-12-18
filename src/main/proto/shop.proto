@@ -1,0 +1,68 @@
+
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "grpc.shop.proto";
+option java_outer_classname = "ShopProto";
+
+package shop;
+
+service Shop {
+  
+  rpc GetShopById(RequestId) returns (ReplyShopList) {}
+}
+
+message RequestId {
+  repeated int64 id = 1;
+}
+
+message ReplyShopList {
+  repeated ReplyShop replyShopList = 1;
+}
+
+message ReplyShop {
+     int64 id = 1;
+	 string shop_name = 2;
+     string api_key = 3;
+     string api_key_eff_timlmt = 4;
+     int32 api_key_usage_agreement_ver = 5;
+     string api_key_usage_agreement_date = 6;
+     string company_name = 7;
+     string hojinkaku_name_kbn = 8;
+     string hojinkaku_posi_kbn = 9;
+     string rplsnt_kanji_family_name = 10;
+     string rplsnt_kanji_name = 11;
+     string rplsnt_kana_family_name = 12;
+     string rplsnt_kana_name = 13;
+     string rplsnt_alphabet_family_name = 14;
+     string rplsnt_alphabet_name = 15;
+     string store_name = 16;
+     string charge_dept_zip = 17;
+     string charge_dept_address_city = 18;
+     string charge_dept_address_bldg = 19;
+     string charge_dept_name = 20;
+     string ec_rspsbl_kanji_family_name = 21;
+     string ec_rspsbl_kanji_name = 22;
+     string ec_rspsbl_kana_family_name = 23;
+     string ec_rspsbl_kana_name = 24;
+     string chareg_email_local = 25;
+     string charge_email_domain = 26;
+     string user_contact_email_local = 27;
+     string user_contact_email_domain = 28;
+     string adviser_email_local = 29;
+     string adviser_email_domain = 30;
+     string consumer_contact_tel = 31;
+     string fax_no = 32;
+     string hp_addr = 33;
+     int64 current_user_relation_key = 34;
+     string notes = 35;
+	 int32 del_flg = 36;
+	 string create_date  = 37;
+	 string update_date  = 38;
+	 int32 create_id = 39;
+	 int32 update_id = 40;
+	 string create_pgm_id = 41;
+	 string update_pgm_id = 42;
+	 int64 version = 43;
+}

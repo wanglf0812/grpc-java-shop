@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="grpc.shop.dao.ShopDao" >
+  <resultMap id="BaseResultMap" type="grpc.shop.dto.ShopDto" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="api_key" property="apiKey" jdbcType="VARCHAR" />
+    <result column="api_key_eff_timlmt" property="apiKeyEffTimlmt" jdbcType="VARCHAR" />
+    <result column="api_key_usage_agreement_ver" property="apiKeyUsageAgreementVer" jdbcType="INTEGER" />
+    <result column="api_key_usage_agreement_date" property="apiKeyUsageAgreementDate" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="hojinkaku_name_kbn" property="hojinkakuNameKbn" jdbcType="VARCHAR" />
+    <result column="hojinkaku_posi_kbn" property="hojinkakuPosiKbn" jdbcType="VARCHAR" />
+    <result column="rplsnt_kanji_family_name" property="rplsntKanjiFamilyName" jdbcType="VARCHAR" />
+    <result column="rplsnt_kanji_name" property="rplsntKanjiName" jdbcType="VARCHAR" />
+    <result column="rplsnt_kana_family_name" property="rplsntKanaFamilyName" jdbcType="VARCHAR" />
+    <result column="rplsnt_kana_name" property="rplsntKanaName" jdbcType="VARCHAR" />
+    <result column="rplsnt_alphabet_family_name" property="rplsntAlphabetFamilyName" jdbcType="VARCHAR" />
+    <result column="rplsnt_alphabet_name" property="rplsntAlphabetName" jdbcType="VARCHAR" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="charge_dept_zip" property="chargeDeptZip" jdbcType="VARCHAR" />
+    <result column="charge_dept_address_city" property="chargeDeptAddressCity" jdbcType="VARCHAR" />
+    <result column="charge_dept_address_bldg" property="chargeDeptAddressBldg" jdbcType="VARCHAR" />
+    <result column="charge_dept_name" property="chargeDeptName" jdbcType="VARCHAR" />
+    <result column="ec_rspsbl_kanji_family_name" property="ecRspsblKanjiFamilyName" jdbcType="VARCHAR" />
+    <result column="ec_rspsbl_kanji_name" property="ecRspsblKanjiName" jdbcType="VARCHAR" />
+    <result column="ec_rspsbl_kana_family_name" property="ecRspsblKanaFamilyName" jdbcType="VARCHAR" />
+    <result column="ec_rspsbl_kana_name" property="ecRspsblKanaName" jdbcType="VARCHAR" />
+    <result column="chareg_email_local" property="charegEmailLocal" jdbcType="VARCHAR" />
+    <result column="charge_email_domain" property="chargeEmailDomain" jdbcType="VARCHAR" />
+    <result column="user_contact_email_local" property="userContactEmailLocal" jdbcType="VARCHAR" />
+    <result column="user_contact_email_domain" property="userContactEmailDomain" jdbcType="VARCHAR" />
+    <result column="adviser_email_local" property="adviserEmailLocal" jdbcType="VARCHAR" />
+    <result column="adviser_email_domain" property="adviserEmailDomain" jdbcType="VARCHAR" />
+    <result column="consumer_contact_tel" property="consumerContactTel" jdbcType="VARCHAR" />
+    <result column="fax_no" property="faxNo" jdbcType="VARCHAR" />
+    <result column="hp_addr" property="hpAddr" jdbcType="VARCHAR" />
+    <result column="current_user_relation_key" property="currentUserRelationKey" jdbcType="BIGINT" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="del_flg" property="delFlg" jdbcType="TINYINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="BIGINT" />
+    <result column="update_id" property="updateId" jdbcType="BIGINT" />
+    <result column="create_pgm_id" property="createPgmId" jdbcType="VARCHAR" />
+    <result column="update_pgm_id" property="updatePgmId" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_name, api_key, api_key_eff_timlmt, api_key_usage_agreement_ver, api_key_usage_agreement_date, 
+    company_name, hojinkaku_name_kbn, hojinkaku_posi_kbn, rplsnt_kanji_family_name, rplsnt_kanji_name, 
+    rplsnt_kana_family_name, rplsnt_kana_name, rplsnt_alphabet_family_name, rplsnt_alphabet_name, 
+    store_name, charge_dept_zip, charge_dept_address_city, charge_dept_address_bldg, 
+    charge_dept_name, ec_rspsbl_kanji_family_name, ec_rspsbl_kanji_name, ec_rspsbl_kana_family_name, 
+    ec_rspsbl_kana_name, chareg_email_local, charge_email_domain, user_contact_email_local, 
+    user_contact_email_domain, adviser_email_local, adviser_email_domain, consumer_contact_tel, 
+    fax_no, hp_addr, current_user_relation_key, notes, del_flg, create_date, update_date, 
+    create_id, update_id, create_pgm_id, update_pgm_id, version
+  </sql>
+  <select id="getShopById" resultMap="BaseResultMap" parameterType="java.util.List" resultType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where id in
+		<foreach item="item" collection="list" separator="," open="(" close=")" index="">
+			#{item}
+		</foreach>
+  </select>
+</mapper>
